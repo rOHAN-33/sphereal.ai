@@ -1,16 +1,27 @@
+"use client"
 import React from 'react'
+import { useRef } from 'react'
 import robotImg from "../../../public/robot.jpg"
 import Image from 'next/image'
 import { Button } from '../components/Button'
 import underLineImage from "../../../public/underline.svg"
-import loaderSvg from '../../../public/loader.svg'
+import loaderSvg from '../../../public/loader-animated.svg'
 import { Orbit } from '../components/Orbit'
 import Planet from '../components/Planet'
 import SectionBorder from '../components/SectionBorder'
 import { SectionContent } from '../components/SectionContent'
+import {motion, useScroll, useTransform} from "framer-motion"
+import "../sections/Hero.css"
 const Hero = () => {
+  const sectionRef = useRef(null);
+  const{scrollYProgress} = useScroll({
+    target: sectionRef,
+    offset:['end start' , 'start end'],
+  })
+
+  const transformedY = useTransform(scrollYProgress,[0,1],[200, -200])
   return (
-    <section className='overflow-x-hidden'>
+    <section className='overflow-x-hidden ' ref={sectionRef}>
       <div className='container '>
         <SectionBorder>
           {/* <SectionContent></SectionContent> */}
@@ -59,25 +70,28 @@ const Hero = () => {
                 </div>
             
 
-            <div className='absolute  left-0 z-10 top-[30%] -translate-x-10'>
-                <div className='bg-gray-800/70 backdrop:blur-md border-gray-700 rounded-xl p-4 w-72 '>
-                    <div>Can You Generate an incredible frontend dev video tutorial</div>
-                    <div className='text-right text-gray-400 text-sm font-semibold'>1m age</div>
-                </div>
-            </div>
-            <div className='absolute  right-0 z-10 top-[50%] translate-x-10'>
-                <div className='bg-gray-800/70 backdrop:blur-md border-gray-700 rounded-xl p-4 w-72 '>
-                    <strong>BrainWave:</strong> I created one based on some reference from the youtube video
-                    <div className='text-right text-gray-400 text-sm font-semibold'>Suggest Now</div>
-                </div>
-            </div>
+            {/* Left Chat Bubble - Hidden on Mobile */}
+<div className="absolute left-0 z-10 top-[30%] -translate-x-10 md:-translate-x-16 hidden md:block">
+  <motion.div className="bg-gray-800/70 backdrop-blur-md border border-gray-700 rounded-xl p-4 max-w-xs" style={{y:transformedY}}>
+    <div>Can You Generate an incredible frontend dev video tutorial</div>
+    <div className="text-right text-gray-400 text-sm font-semibold">1m ago</div>
+  </motion.div>
+</div>
+
+{/* Right Chat Bubble - Hidden on Mobile */}
+<div className="absolute right-0 z-10 top-[50%] translate-x-10 md:translate-x-16 hidden md:block">
+  <motion.div className="bg-gray-800/70 backdrop-blur-md border border-gray-700 rounded-xl p-4 max-w-xs" style={{y:transformedY}} >
+    <strong>BrainWave:</strong> I created one based on some reference from the YouTube
+    <div className="text-right text-gray-400 text-sm font-semibold">Suggest Now</div>
+  </motion.div>
+</div>
             
             <div className='mt-20 rounded-2xl border-2 border-gradient flex overflow-hidden relative  '>
                 
               <Image src={robotImg} alt='robotimg'></Image> 
               <div className='absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 w-full px-4 '>
                 <div className='bg-gray-950/80 flex items-center gap-4 px-4 py-2 rounded-2xl w-[320px] max-w-full'>
-                    <Image src={loaderSvg} alt='loader' width={24} height={24} className='text-violet-400'></Image>
+                    <Image src={loaderSvg} alt='loader' width={24} height={24} className='filter-white'></Image>
                     <div className='font-semibold text-xl text-gray-100 '>AI is generating <span>|</span></div>
                 </div>
               </div>

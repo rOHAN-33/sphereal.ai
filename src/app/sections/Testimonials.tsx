@@ -43,7 +43,7 @@ const SELECTED_TESTIMONIALS_INDEX = 0;
 
 export const Testimonials = () => {
 return (
-    <section className="pb-[1000px] p-4">
+    <section className=" p-4">
     <div className="container">
         <SectionContent>
             <div className="border-gradient rounded-3xl px-6 py-16 relative flex flex-col gap-12 md:mx-10 md:px-10 md:flex-row items-center lg:px-16 lg:py-24 lg:mx-20">

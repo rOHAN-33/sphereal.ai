@@ -11,7 +11,7 @@ const classes = cva('bg-gradient-to-b  to-gray-950  rounded-full',{
         color:{
             violet:'from-violet-400',
             teal:'from-teal-400',
-            fuchsia:''
+            fuchsia:'from-fuchsia-400'
         }
     },
     defaultVariants:{
