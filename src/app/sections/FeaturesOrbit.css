@@ -1,0 +1,252 @@
+/* FeaturesOrbit.css */
+
+/* Main orbital system container */
+.features-orbital-system {
+  position: relative;
+  width: 270px;
+  height: 270px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Orbit rings for visual reference */
+.features-orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.features-orbit-ring.outer-ring {
+  width: 270px;
+  height: 270px;
+}
+
+.features-orbit-ring.inner-ring {
+  width: 180px;
+  height: 180px;
+}
+
+/* Center logo */
+.features-center-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+.features-center-logo:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Main revolving container */
+.features-logos-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 270px;
+  height: 270px;
+  animation: features-orbit-rotate 20s linear infinite;
+}
+
+/* Individual logo positioning */
+.features-logo-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  animation: features-counter-rotate 20s linear infinite;
+}
+
+/* Position each logo based on original rotation */
+.logo-1 { /* 0deg - top */
+  transform: translate(-50%, -50%) translateY(-135px);
+}
+
+.logo-2 { /* 45deg - top right */
+  transform: translate(-50%, -50%) rotate(45deg) translateY(-135px) rotate(-45deg);
+}
+
+.logo-3 { /* 90deg - right */
+  transform: translate(-50%, -50%) rotate(90deg) translateY(-135px) rotate(-90deg);
+}
+
+.logo-4 { /* 135deg - bottom right */
+  transform: translate(-50%, -50%) rotate(135deg) translateY(-135px) rotate(-135deg);
+}
+
+.logo-5 { /* 180deg - bottom */
+  transform: translate(-50%, -50%) rotate(180deg) translateY(-135px) rotate(-180deg);
+}
+
+.logo-6 { /* 225deg - bottom left */
+  transform: translate(-50%, -50%) rotate(225deg) translateY(-135px) rotate(-225deg);
+}
+
+.logo-7 { /* 270deg - left */
+  transform: translate(-50%, -50%) rotate(270deg) translateY(-135px) rotate(-270deg);
+}
+
+.logo-8 { /* 315deg - top left */
+  transform: translate(-50%, -50%) rotate(315deg) translateY(-135px) rotate(-315deg);
+}
+
+/* Logo card styling */
+.features-logo-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(209, 213, 219);
+  border-radius: 0.5rem;
+  background-color: rgb(3, 7, 18);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.features-logo-card:hover {
+  transform: scale(1.2);
+  border-color: rgb(167, 139, 250);
+  box-shadow: 0 4px 16px rgba(167, 139, 250, 0.2);
+  background-color: rgb(15, 23, 42);
+}
+
+/* Logo image */
+.features-logo-image {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  transition: filter 0.3s ease;
+  filter: brightness(0.8);
+}
+
+.features-logo-card:hover .features-logo-image {
+  filter: brightness(1);
+}
+
+/* Keyframe animations */
+@keyframes features-orbit-rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes features-counter-rotate {
+  from {
+    animation-timing-function: linear;
+  }
+  to {
+    animation-timing-function: linear;
+  }
+}
+
+/* Counter-rotate each logo to keep them upright */
+.logo-1 { animation: features-counter-rotate-0 20s linear infinite; }
+.logo-2 { animation: features-counter-rotate-45 20s linear infinite; }
+.logo-3 { animation: features-counter-rotate-90 20s linear infinite; }
+.logo-4 { animation: features-counter-rotate-135 20s linear infinite; }
+.logo-5 { animation: features-counter-rotate-180 20s linear infinite; }
+.logo-6 { animation: features-counter-rotate-225 20s linear infinite; }
+.logo-7 { animation: features-counter-rotate-270 20s linear infinite; }
+.logo-8 { animation: features-counter-rotate-315 20s linear infinite; }
+
+@keyframes features-counter-rotate-0 {
+  from { transform: translate(-50%, -50%) translateY(-135px) rotate(0deg); }
+  to { transform: translate(-50%, -50%) translateY(-135px) rotate(-360deg); }
+}
+
+@keyframes features-counter-rotate-45 {
+  from { transform: translate(-50%, -50%) rotate(45deg) translateY(-135px) rotate(-45deg); }
+  to { transform: translate(-50%, -50%) rotate(405deg) translateY(-135px) rotate(-405deg); }
+}
+
+@keyframes features-counter-rotate-90 {
+  from { transform: translate(-50%, -50%) rotate(90deg) translateY(-135px) rotate(-90deg); }
+  to { transform: translate(-50%, -50%) rotate(450deg) translateY(-135px) rotate(-450deg); }
+}
+
+@keyframes features-counter-rotate-135 {
+  from { transform: translate(-50%, -50%) rotate(135deg) translateY(-135px) rotate(-135deg); }
+  to { transform: translate(-50%, -50%) rotate(495deg) translateY(-135px) rotate(-495deg); }
+}
+
+@keyframes features-counter-rotate-180 {
+  from { transform: translate(-50%, -50%) rotate(180deg) translateY(-135px) rotate(-180deg); }
+  to { transform: translate(-50%, -50%) rotate(540deg) translateY(-135px) rotate(-540deg); }
+}
+
+@keyframes features-counter-rotate-225 {
+  from { transform: translate(-50%, -50%) rotate(225deg) translateY(-135px) rotate(-225deg); }
+  to { transform: translate(-50%, -50%) rotate(585deg) translateY(-135px) rotate(-585deg); }
+}
+
+@keyframes features-counter-rotate-270 {
+  from { transform: translate(-50%, -50%) rotate(270deg) translateY(-135px) rotate(-270deg); }
+  to { transform: translate(-50%, -50%) rotate(630deg) translateY(-135px) rotate(-630deg); }
+}
+
+@keyframes features-counter-rotate-315 {
+  from { transform: translate(-50%, -50%) rotate(315deg) translateY(-135px) rotate(-315deg); }
+  to { transform: translate(-50%, -50%) rotate(675deg) translateY(-135px) rotate(-675deg); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .features-orbital-system {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .features-orbit-ring.outer-ring {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .features-orbit-ring.inner-ring {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .features-logos-orbit {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .features-logo-item {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .features-logo-image {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Pause animation on hover for better UX */
+.features-orbital-system:hover .features-logos-orbit {
+  animation-play-state: paused;
+}
+
+.features-orbital-system:hover .features-logo-item {
+  animation-play-state: paused;
+}
+
+/* Stagger animation timing for more natural movement */
+.logo-2 { animation-delay: -2.5s; }
+.logo-3 { animation-delay: -5s; }
+.logo-4 { animation-delay: -7.5s; }
+.logo-5 { animation-delay: -10s; }
+.logo-6 { animation-delay: -12.5s; }
+.logo-7 { animation-delay: -15s; }
+.logo-8 { animation-delay: -17.5s; }

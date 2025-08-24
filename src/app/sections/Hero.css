@@ -1,3 +1,237 @@
 .filter-white {
   filter: brightness(0) invert(1);
 }
+
+
+
+
+/* OrbitAnimations.css */
+
+/* Base orbit container */
+.orbit-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: orbit-spin linear infinite;
+}
+
+/* Orbit sizes */
+.orbit-350 {
+  width: 350px;
+  height: 350px;
+  animation-duration: 25s;
+}
+
+.orbit-600 {
+  width: 600px;
+  height: 600px;
+  animation-duration: 35s;
+}
+
+.orbit-850 {
+  width: 850px;
+  height: 850px;
+  animation-duration: 45s;
+}
+
+.orbit-1100 {
+  width: 1100px;
+  height: 1100px;
+  animation-duration: 55s;
+}
+
+.orbit-1350 {
+  width: 1350px;
+  height: 1350px;
+  animation-duration: 65s;
+}
+
+/* Planet positioning on orbits */
+.planet-on-orbit {
+  position: absolute;
+  animation: counter-orbit linear infinite;
+}
+
+/* Counter rotation to keep planets upright */
+.orbit-350 .planet-on-orbit {
+  animation-duration: 25s;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-600 .planet-on-orbit {
+  animation-duration: 35s;
+}
+
+.orbit-600 .planet-1 {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-600 .planet-2 {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.orbit-850 .planet-on-orbit {
+  animation-duration: 45s;
+}
+
+.orbit-850 .planet-1 {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-850 .planet-2 {
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+.orbit-850 .planet-3 {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.orbit-1100 .planet-on-orbit {
+  animation-duration: 55s;
+}
+
+.orbit-1100 .planet-1 {
+  top: 25%;
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+.orbit-1100 .planet-2 {
+  bottom: 25%;
+  left: 0;
+  transform: translate(-50%, 50%);
+}
+
+.orbit-1350 .planet-on-orbit {
+  animation-duration: 65s;
+}
+
+.orbit-1350 .planet-1 {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-1350 .planet-2 {
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+.orbit-1350 .planet-3 {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.orbit-1350 .planet-4 {
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+/* Keyframe animations */
+@keyframes orbit-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes counter-orbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .orbit-1350 {
+    display: none;
+  }
+  
+  .orbit-1100 {
+    width: 800px;
+    height: 800px;
+  }
+  
+  .orbit-850 {
+    width: 600px;
+    height: 600px;
+  }
+}
+
+@media (max-width: 640px) {
+  .orbit-1100 {
+    display: none;
+  }
+  
+  .orbit-850 {
+    width: 500px;
+    height: 500px;
+  }
+  
+  .orbit-600 {
+    width: 400px;
+    height: 400px;
+  }
+  
+  .orbit-350 {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* Hover effects for planets */
+.planet-on-orbit:hover {
+  transform: translate(-50%, -50%) scale(1.2) !important;
+  transition: transform 0.3s ease;
+  z-index: 10;
+}
+
+/* Stagger animation delays for more natural movement */
+.orbit-600 .planet-2 {
+  animation-delay: -17.5s; /* Half of 35s */
+}
+
+.orbit-850 .planet-2 {
+  animation-delay: -15s;
+}
+
+.orbit-850 .planet-3 {
+  animation-delay: -30s;
+}
+
+.orbit-1100 .planet-2 {
+  animation-delay: -27.5s;
+}
+
+.orbit-1350 .planet-2 {
+  animation-delay: -16.25s;
+}
+
+.orbit-1350 .planet-3 {
+  animation-delay: -32.5s;
+}
+
+.orbit-1350 .planet-4 {
+  animation-delay: -48.75s;
+}

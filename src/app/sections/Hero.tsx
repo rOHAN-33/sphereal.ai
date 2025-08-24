@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { useRef } from 'react'
+import { useRef ,useEffect } from 'react'
 import robotImg from "../../../public/robot.jpg"
 import Image from 'next/image'
 import { Button } from '../components/Button'
@@ -10,9 +10,42 @@ import { Orbit } from '../components/Orbit'
 import Planet from '../components/Planet'
 import SectionBorder from '../components/SectionBorder'
 import { SectionContent } from '../components/SectionContent'
-import {motion, useScroll, useTransform} from "framer-motion"
+import {motion, useMotionValue, useMotionValueEvent, useScroll, useSpring, useTransform} from "framer-motion"
 import "../sections/Hero.css"
+
+const useMousePosition=()=>{
+  const[innerWidth,setInnerWidth]=React.useState(1);
+  const[innerHeight,setInnerHeight]=React.useState(1);
+  const clientX= useMotionValue(0);
+  const clientY= useMotionValue(0);
+  const xProgress = useTransform(clientX, [0,innerWidth],[0,1]);
+  const YProgress = useTransform(clientY, [0,innerHeight],[0,1]);
+
+  useMotionValueEvent(clientX,"change",(latest)=>{
+    console.log("clientX",latest)
+  })
+
+  useEffect(()=>{
+    setInnerWidth(window.innerWidth);
+    setInnerHeight(window.innerHeight);
+
+    window.addEventListener('resize',()=>{
+      setInnerWidth(window.innerWidth);
+      setInnerHeight(window.innerHeight);
+    })
+  },[])
+
+  useEffect(()=>{
+    window.addEventListener('mousemove',(e)=>{
+      clientX.set(e.clientX);
+      clientY.set(e.clientY);
+    })
+  },[])
+
+  return {xProgress,YProgress};
+}
 const Hero = () => {
+  const{xProgress, YProgress} = useMousePosition();
   const sectionRef = useRef(null);
   const{scrollYProgress} = useScroll({
     target: sectionRef,
@@ -20,6 +53,11 @@ const Hero = () => {
   })
 
   const transformedY = useTransform(scrollYProgress,[0,1],[200, -200])
+
+  const springX = useSpring(xProgress)
+  const springY = useSpring(YProgress)
+  const translateLargeX = useTransform(springX, [0, 1], ["-25%", '25%']);
+  const translateLargeY = useTransform(springY, [0, 1], ['-25%', '25%']);
   return (
     <section className='overflow-x-hidden ' ref={sectionRef}>
       <div className='container '>
@@ -63,10 +101,17 @@ const Hero = () => {
             </div>
             <div className='relative  isolate max-w-6xl mx-auto'>
                 <div className='absolute left-1/2 top-0'>
-                <Planet size="lg" color='violet' className='-translate-x-[315px] -translate-y-[76px] rotate-135'></Planet>
+                <motion.div style={{x:translateLargeX,y:translateLargeY}} >
+                  <Planet size="lg" color='violet' className='-translate-x-[315px] -translate-y-[76px] rotate-135'></Planet>
+                </motion.div>
+                <motion.div style={{x:translateLargeX,y:translateLargeY}} >
+                  <Planet size="lg" color='violet' className='-translate-y-[190px] translate-x-[300px] -rotate-135' ></Planet>
+                  </motion.div>
                     {/* <div className='bg-gradient-to-b from-violet-400 to-gray-950 size-8 rounded-full '></div> */}
-                    <Planet size="lg" color='violet' className='-translate-y-[190px] translate-x-[300px] -rotate-135'></Planet>
-                    <Planet size="md" color='teal' className='-translate-y-[372px] translate-x-[500px] -rotate-135'></Planet>
+                    <motion.div style={{x:translateLargeX,y:translateLargeY}} >
+                      <Planet size="md" color='teal' className='-translate-y-[372px] translate-x-[500px] -rotate-135'></Planet>
+                    </motion.div>
+                    
                 </div>
             
 
