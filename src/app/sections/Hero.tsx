@@ -7,11 +7,13 @@ import loaderSvg from '../../../public/loader.svg'
 import { Orbit } from '../components/Orbit'
 import Planet from '../components/Planet'
 import SectionBorder from '../components/SectionBorder'
+import { SectionContent } from '../components/SectionContent'
 const Hero = () => {
   return (
-    <section className=''>
+    <section className='overflow-x-hidden'>
       <div className='container '>
         <SectionBorder>
+          {/* <SectionContent></SectionContent> */}
         <div className='border-l border-r border-gray-200/30'>
           <div className='container py-24 md:py-36 lg:py-48 relative isolate overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]'>
             <div className='absolute -z-10 inset-0 bg-[radial-gradient(circle_at_center,#e879f9_0%,#a855f7_20%,#6366f1_80%,#3730a3_100%)] [mask-image:radial-gradient(circle_farthest-side,black,transparent)]'>

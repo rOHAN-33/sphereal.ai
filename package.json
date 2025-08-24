@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^7.0.0",
+    "@fortawesome/react-fontawesome": "^3.0.0",
     "class-variance-authority": "^0.7.1",
     "next": "15.5.0",
     "react": "19.1.0",
