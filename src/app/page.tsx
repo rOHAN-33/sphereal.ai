@@ -1,3 +1,4 @@
+import Companies from "./sections/Companies"
 import Header from "./sections/Header"
 import Hero from "./sections/Hero"
 const page = () => {
@@ -5,6 +6,7 @@ const page = () => {
     <div >
       <Header></Header>
       <Hero></Hero>
+      <Companies></Companies>
     </div>
   )
 }
