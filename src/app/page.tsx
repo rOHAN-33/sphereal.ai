@@ -8,6 +8,8 @@ import Features from "./sections/Features";
 import Header from "./sections/Header";
 import Hero from "./sections/Hero";
 import Testimonials from "./sections/Testimonials";
+import { Marquee } from "@/components/ui/marquee";
+// import { BentoGrid } from "@/components/ui/bento-grid";
 
 const Page = () => {
   useEffect(() => {
@@ -44,6 +46,14 @@ const Page = () => {
       <Hero />
       <Companies />
       <Features />
+      {/* <BentoGrid></BentoGrid> */}
+       <Marquee pauseOnHover className="gap-8 text-white text-xl font-bold">
+        <span>Next.js</span>
+        <span>React</span>
+        <span>TypeScript</span>
+        <span>Tailwind CSS</span>
+        <span>Prisma</span>
+      </Marquee>
       <Testimonials />
       <CallToAction />
     </div>

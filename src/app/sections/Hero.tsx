@@ -12,6 +12,7 @@ import SectionBorder from '../components/SectionBorder'
 import { SectionContent } from '../components/SectionContent'
 import {motion, useMotionValue, useMotionValueEvent, useScroll, useSpring, useTransform} from "framer-motion"
 import "../sections/Hero.css"
+import Link from 'next/link'
 
 const useMousePosition=()=>{
   const[innerWidth,setInnerWidth]=React.useState(1);
@@ -87,7 +88,7 @@ const Hero = () => {
 </div>
             <h1 className='text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-100 text-center leading-tight'>The Future of AI Conversation with Saphaire.AI 
               <span className='relative '>
-                <span>Sphereal</span>
+                <span className='text-white'>Sphereal</span>
                 <span className='absolute h-4 w-full left-0 top-full -translate-y-1/2 bg-[linear-gradient(to_right,#fcd34d,#5eead4,#a78bfa,#e879f9)] max-w-3xl max-auto' style={{maskImage:`url(${underLineImage.src})`,
                     maskSize:"contain",
                     maskPosition:"center",
@@ -95,9 +96,12 @@ const Hero = () => {
                 }}></span>
               </span>
             </h1>
-            <p className='text-center text-lg mt-8'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum illo dolor velit autem ad quia soluta ratione cum dolorem obcaecati.</p>
+            <p className='text-center text-lg mt-8 text-white'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum illo dolor velit autem ad quia soluta ratione cum dolorem obcaecati.</p>
             <div className='flex justify-center'>
-              <Button intent="primary" className='mt-10 '>Start Chatting</Button> 
+              <Link href={"/"} >
+              <Button intent="primary" className='mt-10 cursor-pointer'>Start Chatting</Button>
+              </Link>
+               
             </div>
             <div className='relative  isolate max-w-6xl mx-auto'>
                 <div className='absolute left-1/2 top-0'>

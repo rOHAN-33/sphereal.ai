@@ -55,7 +55,7 @@ export default function Header() {
                                 WebkitMaskSize: "contain",
                             }}
                         />
-                        <div className="font-extrabold text-2xl">sphereal.ai</div>
+                        <div className="font-extrabold text-2xl text-white">sphereal.ai</div>
                     </div>
 
                     {/* Center: Nav */}
