@@ -98,7 +98,7 @@ const Hero = () => {
             </h1>
             <p className='text-center text-lg mt-8 text-white'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum illo dolor velit autem ad quia soluta ratione cum dolorem obcaecati.</p>
             <div className='flex justify-center'>
-              <Link href={"/"} >
+              <Link href={"/ai"} >
               <Button intent="primary" className='mt-10 cursor-pointer'>Start Chatting</Button>
               </Link>
                
