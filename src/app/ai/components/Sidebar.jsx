@@ -25,17 +25,32 @@ const Sidebar = ({expand, setExpand}) => {
                   </div>
                 </div>
             </div>
-            <button>
-              <Image src={expand? assets.chat_icon : assets.chat_icon_dull} alt='' className={expand ? "w-6" : "w-7"}>
+            <button className={`mt-8  flex items-center justify-center cursor-pointer ${expand ? "bg-primary hover:opacity-90 rounded-2xl gap-2 p-2.5 w-max" :"group relative h-9 w-9 max-auto hover:bg-gray-500/30 rounded-lg"}`}>
+              <Image src={expand? assets.chat_icon : assets.chat_icon_dull} alt='' className={expand ? "w-6" : "w-7 ml-9"}>
 
               </Image>
-              <div>
+              <div className='absolute w-max -top-12 -right-12 opacity-0 group-hover:opacity-100 transition bg-black text-white text-sm px-3 py-2 rounded-lg shadow-lg pointer-events-none'>
                 New Chat
                 <div className='w-3 h-3 absoluter bg-black rotate-45 left-4 -bottom-1.5'>
 
                 </div>
               </div>
+              {expand && <p className='text-white text font-medium'>New Chat</p>}
             </button>
+
+            <div className={`mt-8 text-white/25 text-sm ${expand ? "block" : "hidden"}`}>
+              <p className='my-1'>
+                Recents
+              </p>
+            </div>
+        </div>
+
+        
+        <div className={`flex items-center ${expand ? "hover:bg-white/10 rounded-lg" : "justify-center w-full " } gap-3 text-white/60 text-sm p-2 mt-2 cursor-pointer`}>
+          <Image src={assets.profile_icon} alt='' className='w-7 '>
+            
+          </Image>
+          {expand && <span>My Profile</span>}
         </div>
     </div>
   )
