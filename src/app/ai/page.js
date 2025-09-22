@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useState } from "react"
 import {assets} from "../../../public/assets/assets"
 import Sidebar from "../../../src/app/ai/components/Sidebar"
+import PromptBox from "./components/PromptBox"
 
 export default function AiModel(){
     const[expand, setExpand] = useState(false)
@@ -37,7 +38,7 @@ export default function AiModel(){
                         </div>
                     )}
 
-                    {/* prompt box */}
+                    <PromptBox isLoading={isLoading} setIsLoading={setIsLoading}></PromptBox>
                     <p className="text-xs absolute bottom-1 text-gray-500">
                         AI-generated , for reference only
                     </p>
