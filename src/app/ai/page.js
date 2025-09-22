@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { useState } from "react"
-import {assets} from "../../../assets/assets"
+import {assets} from "../../../public/assets/assets"
 
 
 export default function AiModel(){
