@@ -3,7 +3,7 @@
 import Image from "next/image"
 import { useState } from "react"
 import {assets} from "../../../public/assets/assets"
-
+import Sidebar from "../../../src/app/ai/components/Sidebar"
 
 export default function AiModel(){
     const[expand, setExpand] = useState(false)
@@ -12,7 +12,7 @@ export default function AiModel(){
     return (
         <div className="text-white">
             <div className="flex h-screen">
-                {/* sidebar */}
+                <Sidebar expand={expand} setExpand={setExpand}></Sidebar>
                 <div className="flex-1 flex flex-col items-center justify-center px-4 pb-8 bg-[#292a2d] text-white relative">
                     <div className="md:hidden absolute px-4 top-6 flex items-center justify-between w-full">
                         <Image src={assets.menu_icon } className="rotate-180 "alt="" onClick={()=>(expand? setExpand(false) : setExpand(true))}></Image>
