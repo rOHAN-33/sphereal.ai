@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Lenis from "@studio-freight/lenis";
 import CallToAction from "./sections/CallToAction";
 import Companies from "./sections/Companies";
 import Features from "./sections/Features";
@@ -9,34 +8,53 @@ import Header from "./sections/Header";
 import Hero from "./sections/Hero";
 import Testimonials from "./sections/Testimonials";
 import { Marquee } from "@/components/ui/marquee";
-// import { BentoGrid } from "@/components/ui/bento-grid";
 
+// Dynamic import for Lenis to avoid SSR issues
 const Page = () => {
   useEffect(() => {
-    // Initialize Lenis
-    const lenis = new Lenis({
-      duration: 1.2, // Animation duration in seconds
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing function
-      direction: 'vertical', // Scroll direction
-      gestureDirection: 'vertical', // Gesture direction
-      smooth: true,
-      mouseMultiplier: 1, // Mouse wheel sensitivity
-      smoothTouch: false, // Smooth scrolling on touch devices
-      touchMultiplier: 2, // Touch sensitivity
-      infinite: false,
-    });
+    let lenis: any = null;
+    let frame: number;
 
-    // Animation frame loop
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
+    // Dynamic import to avoid SSR issues
+    const initLenis = async () => {
+      try {
+        const { default: Lenis } = await import("@studio-freight/lenis");
+        
+        lenis = new Lenis({
+          duration: 1.2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: "vertical",
+          gestureOrientation: "vertical",
+          smoothWheel: true,
+          touchMultiplier: 2,
+          infinite: false,
+        });
+
+        const raf = (time: number) => {
+          if (lenis) {
+            lenis.raf(time);
+          }
+          frame = requestAnimationFrame(raf);
+        };
+
+        frame = requestAnimationFrame(raf);
+      } catch (error) {
+        console.error("Failed to initialize Lenis:", error);
+      }
+    };
+
+    // Only initialize on client side
+    if (typeof window !== "undefined") {
+      initLenis();
     }
 
-    requestAnimationFrame(raf);
-
-    // Cleanup
     return () => {
-      lenis.destroy();
+      if (frame) {
+        cancelAnimationFrame(frame);
+      }
+      if (lenis) {
+        lenis.destroy();
+      }
     };
   }, []);
 
@@ -46,8 +64,7 @@ const Page = () => {
       <Hero />
       <Companies />
       <Features />
-      {/* <BentoGrid></BentoGrid> */}
-       <Marquee pauseOnHover className="gap-8 text-white text-xl font-bold">
+      <Marquee pauseOnHover className="gap-8 text-white text-xl font-bold">
         <span>Next.js</span>
         <span>React</span>
         <span>TypeScript</span>
