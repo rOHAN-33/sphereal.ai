@@ -34,6 +34,7 @@ export const loginItems = [
 ] satisfies {
     name: string,
     href: string,
+    buttonVarient: string,
 }[];
 
 export default function Header() {
