@@ -3,7 +3,7 @@ import connectDB  from "../../config/db"
 
 import User from "../../models/User"
 import { headers } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest} from "next/server";
 
 
 export async function POST(req){
@@ -12,6 +12,7 @@ export async function POST(req){
 
      const svixHeaders = {
         "svix-id":headerPayload.get("svix-id"),
+        "svix-timestamp":headerPayload.get("svix-timestamp"),
         "svix-signature" : headerPayload.get("svix-signature"),
      }
 
