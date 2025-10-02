@@ -12,7 +12,7 @@ export async function GET(req){
                 message:"User not Authenticated"
             })
         }
-
+        
         await connectDB()
         const data = await ChatDB.find({userId})
         
