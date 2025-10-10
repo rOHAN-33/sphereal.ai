@@ -1,10 +1,55 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { assets } from '../../../../public/assets/assets'
+import {useAppContext} from "../context/AppContext"
+import toast from 'react-hot-toast'
 
 const PromptBox = ({setIsLoading, isLoading}) => {
 
     const[prompt, setPrompt] = useState("")
+    const {user, chats, setChats, selectedChat, setSelectedChat } = useAppContext()
+
+    
+    const sendPrompt = async(e)=>{
+        const promptCopy = prompt;
+
+        try {
+            e.preventDefault()
+            if(!user) return toast.error('login to send message')
+                if(isLoading) return toast.error("wait for the previous prompt response")
+
+                    setIsLoading(true)
+                    setPrompt("")
+
+                    const userPrompt = {
+                        role:"user",
+                        content:prompt,
+                        timestamp: Date.now()
+                    }
+
+                setChats((prevChats) => prevChats.map((chat) =>
+                    chat._id === selectedChat._id
+                        ? { ...chat, messages: [...chat.messages, userPrompt] }
+                        : chat
+                ))
+
+                setSelectedChat((prev)=>({
+                    ...prev ,
+                    messages: [...prev.messages, userPrompt]
+                }))
+
+                const {data} = await axios.post('/api/chat/ai', {
+                    chatId : selectedChat._id,
+                    prompt
+                })
+
+                if(data.success){
+                    setChats()
+                }
+        } catch (error) {
+            
+        }
+    }
   return (
     <form className={`w-full ${false ? "max-w-3xl" : "max-w-2xl"} bg-[#404045] p-4 rounded-3xl mt-4 transition-all`}>
         <textarea className='outline-none w-full resize-none overflow-hidden' rows={2} placeholder='Message Sepiral!' required onChange={(e)=>setPrompt(e.target.value)} value={prompt}>

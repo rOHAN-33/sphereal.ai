@@ -1,7 +1,7 @@
 "use client"
 
 import { useAuth, useUser } from "@clerk/nextjs"
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import axios from "axios"
 import toast from "react-hot-toast"
 export const AppContext = createContext()
@@ -27,7 +27,7 @@ export const AppContextProvider = ({children}) => {
                     Authorization: `Bearer ${token}`
                 }
             })
-            
+            fetchUsersChats()
         } catch (error) {
             toast.error(error.message)
         }
@@ -65,8 +65,20 @@ export const AppContextProvider = ({children}) => {
             toast.error(error.message)
         }
     }
+
+    useEffect(()=>{
+        if(user){
+            fetchUsersChats()
+        }
+    },[user])
     const value = {
-        user
+        user,
+        chats,
+        setChats,
+        selectedChat,
+        setSelectedChat,
+        fetchUsersChats,
+        createNewChat
     }
 
     return (
