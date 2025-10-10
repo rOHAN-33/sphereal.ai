@@ -44,10 +44,17 @@ const PromptBox = ({setIsLoading, isLoading}) => {
                 })
 
                 if(data.success){
-                    setChats()
+                    setChats((prevChats)=> prevChats.map((chat)=>chat._id == selectedChat._id ? {...chat, messages: [...chat.messages, data.data]} : chat))
+                }
+                else{
+                    toast.error(data.message)
+                    setPrompt(promptCopy)
                 }
         } catch (error) {
-            
+            toast.error(error.message)
+            setPrompt(promptCopy)
+        }finally{
+            setIsLoading(false)
         }
     }
   return (
