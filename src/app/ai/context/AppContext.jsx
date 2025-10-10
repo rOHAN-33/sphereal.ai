@@ -27,6 +27,7 @@ export const AppContextProvider = ({children}) => {
                     Authorization: `Bearer ${token}`
                 }
             })
+            
         } catch (error) {
             toast.error(error.message)
         }
@@ -49,6 +50,12 @@ export const AppContextProvider = ({children}) => {
                 if(data.data.length === 0){
                     await createNewChat();
                     return fetchUsersChats()
+                }
+                else{
+                    data.data.sort((a, b)=> new Date(b.updatedAt) -  new Date(a.updatedAt))
+
+                    setSelectedChat(data.data[0])
+                    console.log(data.data[0])
                 }
             }
             else{
