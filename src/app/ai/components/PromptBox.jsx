@@ -51,7 +51,29 @@ const PromptBox = ({setIsLoading, isLoading}) => {
 
                     let assistantMessage = {
                         role: "assistant",
-                        content:""
+                        content:"",
+                        timestamp: Date.now()
+                    }
+
+                    selectedChat((prev)=> ({
+                        ...prev,
+                        message: [...prev.messages, assistantMessage]
+                    }))
+
+                    for(let i = 0; i < messageTokens.length; i++){
+                        setTimeout(()=>
+                        {
+                            assistantMessage.content = messageTokens.slice(0, i + 1).join(" ")
+                            setSelectedChat((prev)=>{
+                                const updatedMessages = [
+                                    ...prev.messages.slice(0, -1),
+                                    assistantMessage
+                                ]
+                                return {
+                                    ...prev, messages : updatedMessages
+                                }
+                            })
+                        }, i* 100)
                     }
                 }
                 else{
