@@ -45,6 +45,14 @@ const PromptBox = ({setIsLoading, isLoading}) => {
 
                 if(data.success){
                     setChats((prevChats)=> prevChats.map((chat)=>chat._id == selectedChat._id ? {...chat, messages: [...chat.messages, data.data]} : chat))
+
+                    const message = data.data.content;
+                    const messageTokens = message.split("")
+
+                    let assistantMessage = {
+                        role: "assistant",
+                        content:""
+                    }
                 }
                 else{
                     toast.error(data.message)
