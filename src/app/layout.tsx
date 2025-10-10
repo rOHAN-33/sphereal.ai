@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import {Toaster } from "react-hot-toast"
-import {AppContextProvider} from "../../src/app/ai/context/AppContext"
+// import {AppContextProvider} from "../../src/app/ai/context/AppContext"
+import { AppContextProvider } from "./ai/context/AppContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
